@@ -28,6 +28,10 @@ body {
     position: absolute; 
     font-size: 24px; 
     animation: float 5s linear infinite; 
+} 
+@keyframes float { 
+    0% { transform: translateY(100vh); } 
+    100% { transform: translateY(-10vh); } 
 }
 
 @keyframes float { 
