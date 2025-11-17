@@ -1,0 +1,36 @@
+body { 
+    font-family: 'Comic Sans MS', cursive, sans-serif; 
+    background: #fff0f5; 
+    overflow: hidden; 
+    margin: 0;
+    padding: 0;
+}
+
+#watermark { 
+    position: fixed; 
+    bottom: 10px; 
+    right: 10px; 
+    opacity: 0.2; 
+    font-size: 20px; 
+}
+
+.container { 
+    text-align: center; 
+    padding: 50px; 
+}
+
+#poem { 
+    font-size: 24px; 
+    margin: 20px; 
+}
+
+.emoji { 
+    position: absolute; 
+    font-size: 24px; 
+    animation: float 5s linear infinite; 
+}
+
+@keyframes float { 
+    0% { transform: translateY(100vh); } 
+    100% { transform: translateY(-10vh); } 
+}
