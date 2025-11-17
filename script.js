@@ -52,6 +52,7 @@ const poems = [
 
 let index = 0;
 
+// Show the next poem and pop-up notification
 function nextPoem() {
     const poemEl = document.getElementById('poem');
     poemEl.innerText = poems[index];
@@ -59,6 +60,7 @@ function nextPoem() {
     index = (index + 1) % poems.length;
 }
 
+// Animate floating emojis
 function animateEmojis() {
     const emojis = ['💖','🌸','✨','💫','😍'];
     for(let i=0;i<15;i++) {
@@ -71,20 +73,49 @@ function animateEmojis() {
     }
 }
 
+// Show browser notification
 function showNotification(text) {
     if (Notification.permission === 'granted') {
         new Notification('💖 Daily Love 💖', { body: text });
-    } else if (Notification.permission !== 'denied') {
-        Notification.requestPermission().then(permission => {
-            if (permission === 'granted') {
-                new Notification('💖 Daily Love 💖', { body: text });
-            }
-        });
+    }
+}
+
+// Prompt user for notification permission nicely
+function requestNotificationPermission() {
+    if (Notification.permission === 'default') {
+        const permissionDiv = document.createElement('div');
+        permissionDiv.id = 'permissionPrompt';
+        permissionDiv.style.position = 'fixed';
+        permissionDiv.style.bottom = '20px';
+        permissionDiv.style.left = '50%';
+        permissionDiv.style.transform = 'translateX(-50%)';
+        permissionDiv.style.background = '#ffccf9';
+        permissionDiv.style.padding = '15px 25px';
+        permissionDiv.style.borderRadius = '12px';
+        permissionDiv.style.boxShadow = '0 0 10px rgba(0,0,0,0.3)';
+        permissionDiv.style.zIndex = 1000;
+        permissionDiv.style.textAlign = 'center';
+        permissionDiv.innerHTML = `
+            <p style="margin:0;font-size:16px;">Do you want to enable daily love notifications?</p>
+            <button id="allowBtn" style="margin-top:10px;padding:5px 15px;font-size:16px;border:none;border-radius:8px;background:#ff69b4;color:white;cursor:pointer;">Yes</button>
+        `;
+        document.body.appendChild(permissionDiv);
+
+        document.getElementById('allowBtn').onclick = () => {
+            Notification.requestPermission().then(permission => {
+                if(permission === 'granted') {
+                    nextPoem();
+                }
+            });
+            permissionDiv.remove();
+        };
     }
 }
 
 window.onload = () => {
     nextPoem();
     animateEmojis();
+    requestNotificationPermission();
     setInterval(nextPoem, 24*60*60*1000); // update daily
 };
+
