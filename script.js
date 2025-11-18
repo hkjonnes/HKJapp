@@ -124,4 +124,5 @@ window.onload = () => {
     requestNotificationPermission();
     setInterval(nextPoem, 24*60*60*1000); // daily update
 };
+console.log("HKJapp loaded");
 
