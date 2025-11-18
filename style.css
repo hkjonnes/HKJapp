@@ -41,7 +41,19 @@ body {
 button {
   position: relative;
   z-index: 9999;
-}
+} 
+HKJapp/
+ ├─ src/
+ │   ├─ components/
+ │   │   ├─ SongManager.jsx
+ │   │   ├─ Gallery.jsx
+ │   │   ├─ Chat.jsx
+ │   │   ├─ TicTacToe.jsx
+ │   ├─ data/
+ │   │   └─ songs.json
+ ├─ songs/
+ │   └─ (all your MP3 files)
+
 
 .emoji {
   pointer-events: none;
