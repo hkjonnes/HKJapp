@@ -12,7 +12,17 @@
   <h1>💖 Your Daily Love 💖</h1>
   <div id="poem"></div>
   <button onclick="nextPoem()">Next Poem</button>
-</div>
+</div> 
+  <link rel="manifest" href="manifest.json">
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js")
+    .then(() => console.log("Service worker registered"))
+    .catch(err => console.log("SW error:", err));
+}
+</script>
+
 <script src="script.js"></script>
 </body>
 </html>
